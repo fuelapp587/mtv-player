@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MTV Live Player</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <style>
+    body { background: #000; color: #fff; text-align: center; }
+    video { width: 90%; max-width: 800px; margin-top: 40px;
+            border: 4px solid #fff; border-radius: 12px; }
+  </style>
+</head>
+<body>
+  <h1>🎧 MTV Live Streaming 🎧</h1>
+  <video id="video" controls autoplay></video>
+  <script>
+    const video = document.getElementById('video');
+    const streamURL = "https://fl2.moveonjoy.com/MTV_LIVE/index.m3u8";
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(streamURL);
+      hls.attachMedia(video);
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = streamURL;
+    }
+  </script>
+</body>
+</html>
